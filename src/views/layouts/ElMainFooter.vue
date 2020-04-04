@@ -1,11 +1,14 @@
 <template>
     <div class="footer-social-icons">
-        <h4 style="color: gray; text-align: center;" class="notification">Sigueme a través de mis redes sociales. </h4>
+        <h4 style="color: gray; text-align: center;" class="notification">Sígueme en mis redes sociales.</h4>
         <ul class="social-icons">
-            <li><a href="" class="social-icon"> <i class="fa fa-twitter"></i></a></li>
-            <li><a href="" class="social-icon"> <i class="fa fa-rss"></i></a></li>
-            <li><a href="" class="social-icon"> <i class="fa fa-linkedin"></i></a></li>
-            <li><a href="" class="social-icon"> <i class="fa fa-github"></i></a></li>
+            <li><a href="https://www.facebook.com/OmarEducacionFinanciera" class="social-icon" target="_blank"> <i class="fa fa-facebook"></i></a></li>
+<!--            <li><a href="" class="social-icon"> <i class="fa fa-twitter"></i></a></li>-->
+<!--            <li><a href="" class="social-icon"> <i class="fa fa-rss"></i></a></li>-->
+            <li><a href="https://www.youtube.com/channel/UCdNnEDbRWhanA1O8zhCn3ZA" class="social-icon" target="_blank"> <i class="fa fa-youtube"></i></a></li>
+<!--            <li><a href="" class="social-icon"> <i class="fa fa-linkedin"></i></a></li>-->
+            <li><a href="https://www.instagram.com/OmarEducacionFinanciera" class="social-icon" target="_blank"> <i class="fa fa-instagram"></i></a></li>
+<!--            <li><a href="" class="social-icon"> <i class="fa fa-github"></i></a></li>-->
         </ul>
     </div>
 </template>

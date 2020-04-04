@@ -3,7 +3,19 @@
         <el-container>
             <el-main>
                 <div class="subtitle-style">
-                    <h3>Crecimiento Por año</h3>
+                    <h3>
+                        Calculadora de interés compuesto
+                        <el-tooltip placement="top-start" effect="dark">
+                            <div slot="content">
+                                Interés compuesto, es el interés generado sobre los intereses al reinvertirlos. <br>
+                                Esta calculadora asume que cada año tus ganancias serán reinvertidas <br>
+                                y no se hará ningún retiro.
+                            </div>
+                            <span><i class="el-icon-info" style="font-size: 0.8rem;"></i></span>
+                        </el-tooltip>
+                    </h3>
+
+
                 </div>
                 <chart-set-up :chart-data="datacollection"></chart-set-up>
 
@@ -11,18 +23,22 @@
 
                 <el-main>
                     <div class="subtitle-style">
-                        <h3>Estrategia Actual</h3>
+                        <h3>Resultados</h3>
                     </div>
                     <el-row :gutter="12">
                         <el-col :span="6" style="text-align: center;">
                             <el-card shadow="hover" id="principal">
                                 <div slot="header" class="clearfix" style="display: block;">
-                                    <span style="display: block;"><h3 class="subtitle-style">Principal</h3></span>
+                                    <span style="display: block;">
+                                        <h3 class="subtitle-style">
+                                            Depósito inicial
+                                        </h3>
+                                    </span>
                                     <span style="display: block;">
                                         <el-icon class="icon el-icon-wallet icon"  type="text"></el-icon>
                                     </span>
                                 </div>
-                                <div class="high">
+                                <div class="strategy-high">
                                     {{ currentStrategy.principal}}
                                 </div>
                             </el-card>
@@ -30,13 +46,16 @@
                         <el-col :span="6" style="text-align: center;">
                             <el-card shadow="hover" id="deposits">
                                 <div slot="header" class="clearfix" style="display: block;">
-                                    <span style="display: block;"><h3 class="subtitle-style">Depósitos</h3></span>
+                                    <span style="display: block;">
+                                        <h3 class="subtitle-style">
+                                            Depósitos adicionales</h3>
+                                    </span>
                                     <span style="display: block;">
                                         <el-icon class="icon el-icon-coin icon"  type="text"></el-icon>
                                     </span>
                                 </div>
-                                <div class="high">
-                                    {{ currentStrategy.deposits}}
+                                <div class="strategy-high">
+                                    {{currentStrategy.deposits}}
                                 </div>
                             </el-card>
                         </el-col>
@@ -48,7 +67,7 @@
                                         <el-icon class="icon el-icon-data-line icon"  type="text"></el-icon>
                                     </span>
                                 </div>
-                                <div class="high">
+                                <div class="strategy-high">
                                     {{ currentStrategy.interests}}
                                 </div>
                             </el-card>
@@ -61,7 +80,7 @@
                                         <el-icon class="icon el-icon-money icon"  type="text"></el-icon>
                                     </span>
                                 </div>
-                                <div class="high">
+                                <div class="strategy-high">
                                     {{ currentStrategy.total}}
                                 </div>
                             </el-card>
@@ -77,15 +96,21 @@
                         <div class="subtitle-style">
                             <h3>Interes Compuesto Por año</h3>
                         </div>
-                        <el-table :data="tableMetrics" style="width: 100%" height="40rem" v-loading="loading">
+                        <el-table :data="tableMetrics" style="" height="40rem" v-loading="loading">
                             <el-table-column prop="years" label="Años"></el-table-column>
-                            <el-table-column prop="principal" label="Principal"></el-table-column>
-                            <el-table-column prop="deposits" label="Depósitos"></el-table-column>
+                            <el-table-column prop="principal" label="Depósito inicial"></el-table-column>
+                            <el-table-column id="deposits-big-total" prop="deposits" label="Depósitos adicionales"></el-table-column>
                             <el-table-column prop="interests" label="Interes"></el-table-column>
                             <el-table-column prop="total" label="Total"></el-table-column>
                         </el-table>
                     </el-main>
                 </el-container>
+
+                <el-divider></el-divider>
+
+              <el-container>
+                  <el-faq-section></el-faq-section>
+              </el-container>
 
             </el-main>
         </el-container>
@@ -94,12 +119,14 @@
 </template>
 
 <script>
-    import ChartSetUp from "../components/ChartSetUp";
+   import ChartSetUp from "../ChartSetUp";
+   import ElFaqSection from "../../views/compound-interest/ElFaqSection";
 
     export default {
         name: 'CompoundCharts',
         components: {
-            ChartSetUp
+            ChartSetUp,
+            ElFaqSection
         },
         props: ['inputs'],
         data() {
@@ -124,7 +151,8 @@
                     'interests': 0,
                     'total': 0
                 },
-                loading: false
+                loading: false,
+                activeNames: ['1']
             }
         },
         methods: {
@@ -134,16 +162,16 @@
                     labels: years,
                     datasets: [
                         {
-                            label: 'Principal',
+                            label: 'Depósito inicial',
                             backgroundColor: '#1C81A2',
                             data: handleData['principal']
                         }, {
-                            label: 'Deposits',
+                            label: 'Depósitos adicionales',
                             backgroundColor: '#23A1CD',
                             data: handleData['deposits']
                         },
                         {
-                            label: 'Interest',
+                            label: 'Interés',
                             backgroundColor: '#68F1BB',
                             data: handleData['interests']
                         },
@@ -165,7 +193,7 @@
                 let futureValue = 0;
 
                 for (let years = 1; years <= vm.inputs.time; years++) {
-                    vm.categories.push(years === 1 ? years + ' year' : years + ' years');
+                    vm.categories.push(years === 1 ? years + ' año' : years + ' años');
                     vm.metrics.principal.push(vm.inputs.principal);
 
                     let deposited = years * vm.inputs.compound * vm.inputs.pmt;
@@ -174,8 +202,6 @@
 
                     compoundInterest = vm.calculateTotalCompoundInterest(years);
                     futureValue = vm.calculateFutureValue(years);
-
-                    console.log(compoundInterest, futureValue);
 
                     let total = Number(compoundInterest) + Number(futureValue);
                     vm.metrics.interests.push((total - deposited - vm.inputs.principal).toFixed(2));
@@ -264,11 +290,11 @@
         },
         mounted() {
             let vm = this;
+            vm.realRate = vm.inputs.rate / 100;
             vm.fillData();
         }
     }
 </script>
-
 <style scoped>
     .subtitle-style {
         padding-bottom: 5px;
@@ -279,10 +305,10 @@
         font-size: 5rem;
         color: gray;
     }
-    .high {
+    .strategy-high {
         font-weight: bolder;
         font-size: 1.5rem;
-    }
+    }  
 </style>
 <style>
     #principal div.el-card__body {

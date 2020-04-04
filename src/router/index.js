@@ -1,16 +1,17 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import CompoundInterestForm from "../views/CompoundInterestForm";
+import CompoundInterestForm from "../views/compound-interest/CompoundInterestForm";
 // import Home from "../views/Home";
 
 Vue.use(VueRouter)
 
 const routes = [
-  // {
-  //   path: '/',
-  //   name: 'Home',
-  //   component: Home
-  // },
+  {
+    path: '/home',
+    name: 'Home',
+    meta: {title: 'Inicio - Omar Educación Financiera'},
+    beforeEnter() {location.href = 'https://omareducacionfinanciera.com/'}
+  },
   {
     path: '/',
     name: 'VueChartJS',

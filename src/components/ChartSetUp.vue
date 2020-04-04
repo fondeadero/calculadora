@@ -1,6 +1,6 @@
 <script>
     //Importing Bar and mixins class from the vue-chartjs wrapper
-    import { Bar, mixins } from 'vue-chartjs'
+    import {Bar, mixins} from 'vue-chartjs'
     //Getting the reactiveProp mixin from the mixins module.
     const { reactiveProp } = mixins
 
@@ -16,8 +16,27 @@
                             stacked: true
                         }],
                         yAxes: [{
-                            stacked: true
+                            stacked: true,
+                            ticks: {
+                                // Include a dollar sign in the ticks
+                                callback: function(value) {
+                                   return (new Intl.NumberFormat('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    })).format(value);
+                                }
+                            }
                         }]
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                return (new Intl.NumberFormat('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })).format(tooltipItem.value);
+                            }
+                        }
                     },
                     legend: {
                         display: true

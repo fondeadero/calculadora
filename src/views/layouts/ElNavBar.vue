@@ -6,7 +6,8 @@
 
     <el-menu  class="el-menu-demo" mode="horizontal" style="align-items: center">
 <!--      <router-link class="el-menu-item align-center" to="/"><span>Home</span></router-link>-->
-      <router-link class="el-menu-item align-center" to="/"><span>Interest Compuesto</span></router-link>
+      <router-link class="el-menu-item align-center" to="home"><span>Volver a Omar Educación Financiera</span></router-link>
+      <router-link class="el-menu-item align-center" to="/"><span>Interés Compuesto</span></router-link>
     </el-menu>
 </template>
 
@@ -18,7 +19,7 @@
 
 <style scoped>
     .align-center {
-        left: 50%;
+        left: 40%;
     }
     .el-menu > .el-menu-item {
         text-decoration:none;
