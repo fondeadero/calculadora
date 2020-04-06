@@ -1,8 +1,9 @@
 {
-  "name": "compound-interest",
+  "name": "compount-interest",
   "author": {
     "email": "delarocha.alberto01@gmail.com",
-    "name": "Alberto de la Rocha"
+    "name": "Alberto de la Rocha",
+    "homepage":"https://www.linkedin.com/in/delarocha01/"
   },
   "description": "App to calculate compound interest",
   "homepage": "https://omareducacionfinanciera.com/",
@@ -14,8 +15,8 @@
     "lint": "vue-cli-service lint"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/dlr-delarocha/compound-interest"
+    "type": "git",
+    "url": "https://github.com/dlr-delarocha/compound-interest"
   },
   "dependencies": {
     "core-js": "^3.6.4",
@@ -56,4 +57,3 @@
     "last 2 versions"
   ]
 }
-

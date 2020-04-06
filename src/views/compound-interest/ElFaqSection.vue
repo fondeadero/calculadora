@@ -1,10 +1,10 @@
 <template>
         <el-main>
             <h3 class="subtitle-style">Preguntas frecuentes</h3>
-            <el-collapse accordion>
+            <el-collapse accordion v-model="activeNames">
                 <el-collapse-item name="1">
                     <template slot="title" >
-                        <span  class="el-collapse-title"> ¿Qué es y cómo funciona la frecuencia anual de interés (FAI)?</span> <i class="header-icon el-icon-information"></i>
+                        <span  class="el-collapse-title"> ¿Qué es y cómo funciona la frecuencia anual de interés?</span> <i class="header-icon el-icon-information"></i>
                     </template>
                     <div class="alert-info-content">
                         <el-alert :closable="false"
@@ -21,7 +21,7 @@
                                 style="width: 65%">
                             <el-table-column
                                     prop="type"
-                                    label="Tipo de interes"
+                                    label="Tipo de interés"
                                     width="auto">
                             </el-table-column>
                             <el-table-column
@@ -39,7 +39,7 @@
                 </el-collapse-item>
             </el-collapse>
             <el-collapse accordion>
-                <el-collapse-item name="1" >
+                <el-collapse-item name="2" >
                     <template slot="title" >
                         <span  class="el-collapse-title"> ¿Cómo funcionan las aportaciones adicionales?</span> <i class="header-icon el-icon-information"></i>
                     </template>
@@ -61,7 +61,7 @@
                                 style="width: 65%">
                             <el-table-column
                                     prop="type"
-                                    label="Tipo de interes"
+                                    label="Tipo de interés"
                                     width="auto">
                             </el-table-column>
                             <el-table-column
@@ -103,7 +103,7 @@
                     }, {
                         type: 'Quincenal',
                         description: 'Genera interés cada quince dias.',
-                        times: '26',
+                        times: '24',
                     }, {
                         type: 'Semanal',
                         description: 'Genera interés cada 7 dias.',
@@ -111,8 +111,8 @@
 
                     }, {
                         type: 'Diario',
-                        description: 'Genera interés cada díá.',
-                        times: '360'
+                        description: 'Genera interés cada día.',
+                        times: '365'
                     }
                 ],
                 quetion2: [
@@ -129,8 +129,8 @@
                     }, {
                         type: 'Quincenal',
                         description: 'Genera interés cada quince dias.',
-                        times: '26',
-                        total: '26 X 100 = $2,600 anuales'
+                        times: '24',
+                        total: '24 X 100 = $2,400 anuales'
                     }, {
                         type: 'Semanal',
                         description: 'Genera interés cada 7 dias.',
@@ -139,11 +139,12 @@
 
                     }, {
                         type: 'Diario',
-                        description: 'Genera interés cada díá.',
-                        times: '360',
-                        total: '360 X 100 = $36,000 anuales'
+                        description: 'Genera interés cada día.',
+                        times: '365',
+                        total: '365 X 100 = $36,500 anuales'
                     }
-                ]
+                ],
+                activeNames: ['1']
             }
         }
     }
@@ -153,5 +154,13 @@
     .alert-info-content > .el-alert--info.is-light {
         width: 65%;
         margin-bottom: 1rem;
+    }
+</style>
+<style>
+    .el-collapse-title {
+        font-size: 14px;
+        font-weight: bold;
+        color: gray;
+
     }
 </style>

@@ -10,7 +10,7 @@ const routes = [
     path: '/home',
     name: 'Home',
     meta: {title: 'Inicio - Omar Educación Financiera'},
-    beforeEnter() {location.href = 'https://omareducacionfinanciera.com/'}
+    beforeEnter() {location.href = 'https://omareducacionfinanciera.com/blog'}
   },
   {
     path: '/',

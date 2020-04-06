@@ -7,7 +7,7 @@
                         Calculadora de interés compuesto
                         <el-tooltip placement="top-start" effect="dark">
                             <div slot="content">
-                                Interés compuesto, es el interés generado sobre los intereses al reinvertirlos. <br>
+                                Interés compuesto es el interés generado sobre los intereses al reinvertirlos. <br>
                                 Esta calculadora asume que cada año tus ganancias serán reinvertidas <br>
                                 y no se hará ningún retiro.
                             </div>
@@ -38,7 +38,7 @@
                                         <el-icon class="icon el-icon-wallet icon"  type="text"></el-icon>
                                     </span>
                                 </div>
-                                <div class="strategy-high">
+                                <div class="high">
                                     {{ currentStrategy.principal}}
                                 </div>
                             </el-card>
@@ -48,13 +48,13 @@
                                 <div slot="header" class="clearfix" style="display: block;">
                                     <span style="display: block;">
                                         <h3 class="subtitle-style">
-                                            Depósitos adicionales</h3>
+                                            Depósitos adicionales acumulados</h3>
                                     </span>
                                     <span style="display: block;">
                                         <el-icon class="icon el-icon-coin icon"  type="text"></el-icon>
                                     </span>
                                 </div>
-                                <div class="strategy-high">
+                                <div class="high">
                                     {{currentStrategy.deposits}}
                                 </div>
                             </el-card>
@@ -62,12 +62,16 @@
                         <el-col :span="6" style="text-align: center;">
                             <el-card shadow="hover" id="interest">
                                 <div slot="header" class="clearfix" style="display: block;">
-                                    <span style="display: block;"><h3 class="subtitle-style">Intereses</h3></span>
+                                    <span style="display: block;">
+                                        <h3 class="subtitle-style">
+                                             Interés acumulado
+                                        </h3>
+                                    </span>
                                     <span style="display: block;">
                                         <el-icon class="icon el-icon-data-line icon"  type="text"></el-icon>
                                     </span>
                                 </div>
-                                <div class="strategy-high">
+                                <div class="high">
                                     {{ currentStrategy.interests}}
                                 </div>
                             </el-card>
@@ -75,12 +79,16 @@
                         <el-col :span="6" style="text-align: center;">
                             <el-card shadow="hover" id="total">
                                 <div slot="header" class="clearfix" style="display: block;">
-                                    <span style="display: block;"><h3 class="subtitle-style">Total</h3></span>
+                                    <span style="display: block;">
+                                        <h3 class="subtitle-style">
+                                            Total
+                                        </h3>
+                                    </span>
                                     <span style="display: block;">
                                         <el-icon class="icon el-icon-money icon"  type="text"></el-icon>
                                     </span>
                                 </div>
-                                <div class="strategy-high">
+                                <div class="high">
                                     {{ currentStrategy.total}}
                                 </div>
                             </el-card>
@@ -94,15 +102,16 @@
                 <el-container style="padding-bottom: 0; margin-bottom: 0">
                     <el-main>
                         <div class="subtitle-style">
-                            <h3>Interes Compuesto Por año</h3>
+                            <h3>Resultados por año</h3>
                         </div>
-                        <el-table :data="tableMetrics" style="" height="40rem" v-loading="loading">
-                            <el-table-column prop="years" label="Años"></el-table-column>
-                            <el-table-column prop="principal" label="Depósito inicial"></el-table-column>
-                            <el-table-column id="deposits-big-total" prop="deposits" label="Depósitos adicionales"></el-table-column>
-                            <el-table-column prop="interests" label="Interes"></el-table-column>
-                            <el-table-column prop="total" label="Total"></el-table-column>
-                        </el-table>
+                            <el-table  class="align-table-content" :data="tableMetrics" height="40rem" v-loading="loading">
+                                <el-table-column prop="years" label="Años"></el-table-column>
+                                <el-table-column prop="principal" label="Depósito inicial"></el-table-column>
+                                <el-table-column prop="deposits" label="Depósitos adicionales acumulados"></el-table-column>
+                                <el-table-column prop="interests" label="Interés acumulado"></el-table-column>
+                                <el-table-column prop="total" label="Total"></el-table-column>
+                            </el-table>
+
                     </el-main>
                 </el-container>
 
@@ -166,12 +175,12 @@
                             backgroundColor: '#1C81A2',
                             data: handleData['principal']
                         }, {
-                            label: 'Depósitos adicionales',
+                            label: 'Depósitos adicionales acumulados',
                             backgroundColor: '#23A1CD',
                             data: handleData['deposits']
                         },
                         {
-                            label: 'Interés',
+                            label: 'Interés acumulado',
                             backgroundColor: '#68F1BB',
                             data: handleData['interests']
                         },
@@ -296,19 +305,14 @@
     }
 </script>
 <style scoped>
-    .subtitle-style {
-        padding-bottom: 5px;
-        color: gray;
-    }
-
     .icon {
         font-size: 5rem;
         color: gray;
     }
-    .strategy-high {
+    .high {
         font-weight: bolder;
         font-size: 1.5rem;
-    }  
+    }
 </style>
 <style>
     #principal div.el-card__body {
@@ -327,4 +331,12 @@
            background: #4CBB9F;
         opacity: 0.8;
     }
+    .subtitle-style {
+        padding-bottom: 5px;
+        color: gray;
+    }
+    .el-table__row {
+        text-align: center;
+    }
+
 </style>

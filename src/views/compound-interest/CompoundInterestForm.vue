@@ -7,23 +7,31 @@
                         <el-row>
                             <el-col class="input-margin">
                                 <div class="sub-title subtitle-style">
-                                    Depósitos adicionales
+                                    Depósito inicial
                                     <el-tooltip placement="top-start" effect="dark">
                                         <div slot="content"> Cantidad con la que vas a comenzar a invertir.</div>
                                         <span><i class="el-icon-info"></i></span>
                                     </el-tooltip>
                                 </div>
-                                <el-input-number v-model.number="inputs.principal" controls-position="right" :min="0"></el-input-number>
+                                <el-currency-format
+                                        v-model.number="inputs.principal"
+                                        mask-type="currency">
+                                </el-currency-format>
                             </el-col>
                             <el-col class="input-margin">
                                 <div class="sub-title subtitle-style">
                                     Tasa de interés anual
                                     <el-tooltip placement="top-start" effect="dark" class="tooltip-format">
-                                        <div slot="content">Tasa de rendimiento anual que recibes.</div>
+                                        <div slot="content">Tasa de rendimiento anual que recibes expresada en porcentaje.</div>
                                         <span><i class="el-icon-info"></i></span>
                                     </el-tooltip>
+                                    <div id="input-interest">
+                                        <el-input  v-model.number="inputs.rate">
+                                            <template slot="prepend"><i class="fa fa-percent"></i></template>
+                                        </el-input>
+                                    </div>
+
                                 </div>
-                                <el-input-number v-model.number="inputs.rate" controls-position="right" :min="0"></el-input-number>
                             </el-col>
                             <el-col class="input-margin">
                                 <div class="sub-title subtitle-style">
@@ -66,7 +74,10 @@
                                         <span><i class="el-icon-info"></i></span>
                                     </el-tooltip>
                                 </div>
-                                <el-input-number v-model.number="inputs.pmt" controls-position="right" :min="0"></el-input-number>
+                                <el-currency-format
+                                        v-model.number="inputs.pmt"
+                                        mask-type="currency">
+                                </el-currency-format>
                             </el-col>
 
                         </el-row>
@@ -82,10 +93,12 @@
 
 <script>
     import CompoundInterest from "../../components/compound-interest/CompoundInterest";
+    import ElCurrencyFormat from "../../components/ElCurrencyFormat";
 
     export default {
         name: 'CompoundCharts',
         components: {
+            ElCurrencyFormat,
            CompoundInterest
         },
         data() {
@@ -104,7 +117,7 @@
                     value: 12,
                     label: 'Mensualmente'
                 }, {
-                    value: 26,
+                    value: 24,
                     label: 'Quincenalmente'
                 }, {
                     value: 52,
@@ -112,7 +125,8 @@
                 }, {
                     value: 365,
                     label: 'Diariamente'
-                }]
+                }],
+                isInputActive: false
             }
         },
         methods: {
@@ -132,10 +146,19 @@
                 },
                 deep: true,
             }
+        },
+        filters: {
+            currency: function (value) {
+                return (new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                })).format(value);
+            }
         }
     }
 </script>
 <style scoped>
+    @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css);
     .input-margin {
         margin-top: 15px;
     }
@@ -150,6 +173,10 @@
 </style>
 <style>
     .el-select  {
+        width: 180px;
+        min-width: 180px;
+    }
+    #input-interest {
         width: 180px;
         min-width: 180px;
     }
