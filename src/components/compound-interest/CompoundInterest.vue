@@ -209,6 +209,7 @@
                     futureValue = vm.calculateFutureValue(years);
 
                     let total = Number(compoundInterest) + Number(futureValue);
+
                     vm.metrics.interests.push((total - deposited - vm.inputs.principal).toFixed(2));
                     vm.metrics.total.push(total.toFixed(2));
                 }
@@ -225,13 +226,21 @@
                 };
                 vm.categories = [];
             },
-            calculateTotalCompoundInterest(time = 0) {
+            calculateTotalCompoundInterest(time = 0, defaultReturn = 0) {
                 let vm = this;
-                return (vm.inputs.principal * (Math.pow(1 + vm.realRate / vm.inputs.compound, vm.inputs.compound * time))).toFixed(2);
+                let compound =  (vm.inputs.principal * (Math.pow(1 + vm.realRate / vm.inputs.compound, vm.inputs.compound * time))).toFixed(2);
+                if(isNaN(Number(compound))) {
+                    return defaultReturn;
+                }
+                return compound;
             },
-            calculateFutureValue(time = 0) {
+            calculateFutureValue(time = 0, defaultReturn = 0) {
                 let vm = this;
-                return (vm.inputs.pmt * (((Math.pow(1 + vm.realRate / vm.inputs.compound, vm.inputs.compound * time)) - 1) / (vm.realRate / vm.inputs.compound))).toFixed(2);
+                let future = (vm.inputs.pmt * (((Math.pow(1 + vm.realRate / vm.inputs.compound, vm.inputs.compound * time)) - 1) / (vm.realRate / vm.inputs.compound))).toFixed(2);
+                if(isNaN(Number(future))) {
+                    return defaultReturn;
+                }
+                return future;
             },
             hasMetricsEmptyData(defaultResponse = false) {
                 let vm = this;
@@ -266,6 +275,9 @@
         },
         watch: {
             'inputs.rate': function (rate) {
+                if (!rate) {
+                    rate = 0;
+                }
                 this.realRate = (rate / 100);
             },
             inputs: {
@@ -285,6 +297,7 @@
             },
             tableMetrics: {
                 handler() {
+                    console.log(this.tableMetrics[this.tableMetrics.length - 1].total );
                     this.currentStrategy.principal = this.tableMetrics[this.tableMetrics.length - 1].principal ?? 0;
                     this.currentStrategy.deposits = this.tableMetrics[this.tableMetrics.length - 1].deposits ?? 0;
                     this.currentStrategy.interests = this.tableMetrics[this.tableMetrics.length - 1].interests ?? 0;
