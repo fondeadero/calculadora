@@ -1,10 +1,11 @@
 <template>
         <el-main>
-            <h3 class="subtitle-style">Preguntas frecuentes</h3>
+            <h3 class="subtitle-style" style="padding-bottom: 15px;">Preguntas frecuentes</h3>
             <el-collapse accordion v-model="activeNames">
                 <el-collapse-item name="1">
                     <template slot="title" >
-                        <span  class="el-collapse-title"> ¿Qué es y cómo funciona la frecuencia anual de interés?</span> <i class="header-icon el-icon-information"></i>
+                        <span  class="span-title-height el-collapse-title"> ¿Qué es y cómo funciona la frecuencia anual de interés?</span>
+                        <i class="header-icon el-icon-information"></i>
                     </template>
                     <div class="alert-info-content">
                         <el-alert :closable="false"
@@ -13,23 +14,26 @@
                                   show-icon>
                         </el-alert>
                     </div>
-                    <div>
+                    <div class="table-sizes">
                         <el-table
                                 :data="quetion1"
                                 header-align="center"
                                 border
-                                style="width: 65%">
+                                style="width: 100%">
                             <el-table-column
+                                    align="center"
                                     prop="type"
                                     label="Tipo de interés"
                                     width="auto">
                             </el-table-column>
                             <el-table-column
+                                    align="center"
                                     prop="description"
                                     label="Tiempo"
                                     width="auto">
                             </el-table-column>
                             <el-table-column
+                                    align="center"
                                     prop="times"
                                     label="Repeticiones al año"
                                     width="auto">
@@ -41,7 +45,7 @@
             <el-collapse accordion>
                 <el-collapse-item name="2" >
                     <template slot="title" >
-                        <span  class="el-collapse-title"> ¿Cómo funcionan las aportaciones adicionales?</span> <i class="header-icon el-icon-information"></i>
+                        <span  class="span-title-height el-collapse-title"> ¿Cómo funcionan las aportaciones adicionales?</span> <i class="header-icon el-icon-information"></i>
                     </template>
                     <div class="alert-info-content">
                         <el-alert :closable="false"
@@ -53,30 +57,28 @@
                                   show-icon>
                         </el-alert>
                     </div>
-                    <div>
+                    <div class="table-sizes">
                         <el-table
                                 :data="quetion2"
                                 header-align="center"
                                 border
-                                style="width: 65%">
+                                style="width: 100%;" >
                             <el-table-column
                                     prop="type"
                                     label="Tipo de interés"
+                                    align="center"
                                     width="auto">
                             </el-table-column>
                             <el-table-column
                                     prop="description"
                                     label="Tiempo"
-                                    width="auto">
-                            </el-table-column>
-                            <el-table-column
-                                    prop="times"
-                                    label="Repeticiones al año"
+                                    align="center"
                                     width="auto">
                             </el-table-column>
                             <el-table-column
                                     prop="total"
                                     label="Total depositado al año"
+                                    align="center"
                                     width="auto">
                             </el-table-column>
                         </el-table>
@@ -119,28 +121,23 @@
                     {
                         type: 'Anual',
                         description: 'Genera interés una vez al año.',
-                        times: '1',
                         total: '1 X 100 = $100 anuales'
                     }, {
                         type: 'Mensual',
                         description: 'Genera interés cada mes.',
-                        times: '12 ',
                         total: '12 X 100 = $1,200 anuales'
                     }, {
                         type: 'Quincenal',
                         description: 'Genera interés cada quince dias.',
-                        times: '24',
                         total: '24 X 100 = $2,400 anuales'
                     }, {
                         type: 'Semanal',
                         description: 'Genera interés cada 7 dias.',
-                        times: '52',
                         total: '52 X 100 = $5,200 anuales'
 
                     }, {
                         type: 'Diario',
                         description: 'Genera interés cada día.',
-                        times: '365',
                         total: '365 X 100 = $36,500 anuales'
                     }
                 ],
@@ -155,12 +152,45 @@
         width: 65%;
         margin-bottom: 1rem;
     }
+
+    @media (max-width: 700px) {
+        .alert-info-content > .el-alert--info.is-light {
+            width: 100%;
+        }
+        .span-title-height {
+            line-height: 20px;
+            padding: 10px;
+
+        }
+
+    }
 </style>
 <style>
+
+    .cell {
+        font-size: 12px;
+    }
     .el-collapse-title {
         font-size: 14px;
         font-weight: bold;
         color: gray;
 
+    }
+
+    .table-sizes {
+        width: 65%;
+    }
+
+    @media (max-width: 700px) {
+        .table-sizes {
+            width: 100%;
+        }
+
+        .el-collapse-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: gray;
+
+        }
     }
 </style>

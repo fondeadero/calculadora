@@ -1,19 +1,39 @@
 <template>
-<!--    <el-menu  class="el-menu-demo" mode="horizontal">-->
-<!--        <el-menu-item class="align-center" index="1"><router-link to="/">Home</router-link></el-menu-item>-->
-<!--        <el-menu-item class="align-center" index="2"><router-link to="/compound-interest">Compound Interest</router-link></el-menu-item>-->
-<!--    </el-menu>-->
+    <nav class="nav has-shadow">
+        <div class="container">
+            <div class="nav-left">
+                <router-link class="nav-item is-tab is-hidden-mobile is-active" to="/" >Interés compuesto</router-link>
+                <router-link class="nav-item is-tab is-hidden-mobile undefined" to="/home" >Volver a Omar</router-link>
+            </div>
+            <!--
+            Using the v-on: directive to listen for the click event and toggle the data property showNav.
+            -->
+            <span class="nav-toggle" @click="showNav = !showNav" :class="showNav ? 'is-active' : 'undefined'">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+            <!--
+            Using the v-bind: directive to reactively update the class attribute with the result of the showNav ternary expression.
+            -->
+            <div class="nav-right nav-menu" :class="showNav ? 'is-active' : 'undefined'">
+                <router-link class="nav-item is-tab is-hidden-tablet is-active " to="/" >Interés Compuesto</router-link>
+                <router-link class="nav-item is-tab is-hidden-tablet undefined" to="/home" >Volver a Omar</router-link>
+            </div>
+        </div>
+    </nav>
 
-    <el-menu  class="el-menu-demo" mode="horizontal" style="align-items: center">
-<!--      <router-link class="el-menu-item align-center" to="/"><span>Home</span></router-link>-->
-      <router-link class="el-menu-item align-center" to="home"><span>Volver a Omar Educación Financiera</span></router-link>
-      <router-link class="el-menu-item align-center" to="/"><span>Interés Compuesto</span></router-link>
-    </el-menu>
+
 </template>
 
 <script>
     export default {
-        name: "ElNavBar"
+        name: "ElNavBar",
+        data() {
+            return {
+                showNav: false
+            }
+        }
     }
 </script>
 

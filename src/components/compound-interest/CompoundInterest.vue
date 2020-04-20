@@ -1,135 +1,131 @@
 <template>
     <el-container style="border: 1px solid #eee">
-        <el-container>
-            <el-main>
-                <div class="subtitle-style">
-                    <h3>
-                        Calculadora de interés compuesto
-                        <el-tooltip placement="top-start" effect="dark">
-                            <div slot="content">
-                                Interés compuesto es el interés generado sobre los intereses al reinvertirlos. <br>
-                                Esta calculadora asume que cada año tus ganancias serán reinvertidas <br>
-                                y no se hará ningún retiro.
-                            </div>
-                            <span><i class="el-icon-info" style="font-size: 0.8rem;"></i></span>
-                        </el-tooltip>
-                    </h3>
-
-
-                </div>
-                <chart-set-up :chart-data="datacollection"></chart-set-up>
-
-                <el-divider></el-divider>
-
-                <el-main>
+        <el-main>
+            <el-row>
+                <el-col>
                     <div class="subtitle-style">
-                        <h3>Resultados</h3>
+                        <h3>
+                            Calculadora de interés compuesto
+                            <el-tooltip placement="top-start" effect="dark">
+                                <div slot="content">
+                                    Interés compuesto es el interés generado sobre los intereses al reinvertirlos. <br>
+                                    Esta calculadora asume que cada año tus ganancias serán reinvertidas <br>
+                                    y no se hará ningún retiro.
+                                </div>
+                                <span><i class="el-icon-info" style="font-size: 0.8rem;"></i></span>
+                            </el-tooltip>
+                        </h3>
                     </div>
-                    <el-row :gutter="12">
-                        <el-col :span="6" style="text-align: center;">
-                            <el-card shadow="hover" id="principal">
-                                <div slot="header" class="clearfix" style="display: block;">
+                    <chart-set-up :chart-data="datacollection"></chart-set-up>
+                </el-col>
+            </el-row>
+
+            <el-divider></el-divider>
+            <el-row :gutter="12">
+                <div class="subtitle-style">
+                    <h3>Resultados</h3>
+                </div>
+                <el-col :span="6" :xs="24" style="text-align: center; margin-bottom: 10px;">
+                    <el-card shadow="hover" id="principal">
+                        <div slot="header" class="clearfix" style="display: block;">
                                     <span style="display: block;">
                                         <h3 class="subtitle-style">
                                             Depósito inicial
                                         </h3>
                                     </span>
-                                    <span style="display: block;">
-                                        <el-icon class="icon el-icon-wallet icon"  type="text"></el-icon>
+                            <span style="display: block;">
+                                        <el-icon class="icon el-icon-wallet icon" type="text"></el-icon>
                                     </span>
-                                </div>
-                                <div class="high">
-                                    {{ currentStrategy.principal}}
-                                </div>
-                            </el-card>
-                        </el-col>
-                        <el-col :span="6" style="text-align: center;">
-                            <el-card shadow="hover" id="deposits">
-                                <div slot="header" class="clearfix" style="display: block;">
-                                    <span style="display: block;">
-                                        <h3 class="subtitle-style">
-                                            Depósitos adicionales acumulados</h3>
-                                    </span>
-                                    <span style="display: block;">
-                                        <el-icon class="icon el-icon-coin icon"  type="text"></el-icon>
-                                    </span>
-                                </div>
-                                <div class="high">
-                                    {{currentStrategy.deposits}}
-                                </div>
-                            </el-card>
-                        </el-col>
-                        <el-col :span="6" style="text-align: center;">
-                            <el-card shadow="hover" id="interest">
-                                <div slot="header" class="clearfix" style="display: block;">
+                        </div>
+                        <div class="high">
+                            {{ currentStrategy.principal}}
+                        </div>
+                    </el-card>
+                </el-col>
+                <el-col :span="6" :xs="24" style="text-align: center; margin-bottom: 10px;">
+                    <el-card shadow="hover" id="deposits">
+                        <div slot="header" class="clearfix" style="display: block;">
+                            <span style="display: block;">
+                                <h3 class="subtitle-style">
+                                    Depósitos adicionales acumulados
+                                </h3>
+                            </span>
+                            <span style="display: block;">
+                                <el-icon class="icon el-icon-coin icon" type="text"></el-icon>
+                            </span>
+                        </div>
+                        <div class="high">
+                            {{currentStrategy.deposits}}
+                        </div>
+                    </el-card>
+                </el-col>
+                <el-col :span="6" :xs="24" style="text-align: center; margin-bottom: 10px;">
+                    <el-card shadow="hover" id="interest">
+                        <div slot="header" class="clearfix" style="display: block;">
                                     <span style="display: block;">
                                         <h3 class="subtitle-style">
                                              Interés acumulado
                                         </h3>
                                     </span>
-                                    <span style="display: block;">
-                                        <el-icon class="icon el-icon-data-line icon"  type="text"></el-icon>
+                            <span style="display: block;">
+                                        <el-icon class="icon el-icon-data-line icon" type="text"></el-icon>
                                     </span>
-                                </div>
-                                <div class="high">
-                                    {{ currentStrategy.interests}}
-                                </div>
-                            </el-card>
-                        </el-col>
-                        <el-col :span="6" style="text-align: center;">
-                            <el-card shadow="hover" id="total">
-                                <div slot="header" class="clearfix" style="display: block;">
+                        </div>
+                        <div class="high">
+                            {{ currentStrategy.interests}}
+                        </div>
+                    </el-card>
+                </el-col>
+                <el-col :span="6" :xs="24" style="text-align: center; margin-bottom: 10px;">
+                    <el-card shadow="hover" id="total">
+                        <div slot="header" class="clearfix" style="display: block;">
                                     <span style="display: block;">
                                         <h3 class="subtitle-style">
                                             Total
                                         </h3>
                                     </span>
-                                    <span style="display: block;">
-                                        <el-icon class="icon el-icon-money icon"  type="text"></el-icon>
+                            <span style="display: block;">
+                                        <el-icon class="icon el-icon-money icon" type="text"></el-icon>
                                     </span>
-                                </div>
-                                <div class="high">
-                                    {{ currentStrategy.total}}
-                                </div>
-                            </el-card>
-                        </el-col>
-                    </el-row>
-                </el-main>
-
-
-                <el-divider></el-divider>
-
-                <el-container style="padding-bottom: 0; margin-bottom: 0">
-                    <el-main>
-                        <div class="subtitle-style">
-                            <h3>Resultados por año</h3>
                         </div>
-                            <el-table  class="align-table-content" :data="tableMetrics" height="40rem" v-loading="loading">
-                                <el-table-column prop="years" label="Años"></el-table-column>
-                                <el-table-column prop="principal" label="Depósito inicial"></el-table-column>
-                                <el-table-column prop="deposits" label="Depósitos adicionales acumulados"></el-table-column>
-                                <el-table-column prop="interests" label="Interés acumulado"></el-table-column>
-                                <el-table-column prop="total" label="Total"></el-table-column>
-                            </el-table>
+                        <div class="high">
+                            {{ currentStrategy.total}}
+                        </div>
+                    </el-card>
+                </el-col>
+            </el-row>
 
-                    </el-main>
-                </el-container>
 
-                <el-divider></el-divider>
+            <el-divider></el-divider>
 
-              <el-container>
-                  <el-faq-section></el-faq-section>
-              </el-container>
+            <el-row style="padding-bottom: 0; margin-bottom: 0">
+                <el-col>
+                    <div class="subtitle-style">
+                        <h3>Resultados por año</h3>
+                    </div>
+                    <el-table style="padding: 15px;"  :data="tableMetrics" height="40rem" v-loading="loading">
+                        <el-table-column style="background-color: #00aced" prop="years" label="Años"></el-table-column>
+                        <el-table-column prop="principal" label="Depósito inicial" class="hidden-sm-only"></el-table-column>
+                        <el-table-column prop="deposits" label="Depósitos adicionales acumulados"></el-table-column>
+                        <el-table-column prop="interests" label="Interés acumulado"></el-table-column>
+                        <el-table-column prop="total" label="Total"></el-table-column>
+                    </el-table>
+                </el-col>
+            </el-row>
 
-            </el-main>
-        </el-container>
+            <el-divider></el-divider>
+
+            <el-row>
+                <el-faq-section></el-faq-section>
+            </el-row>
+        </el-main>
     </el-container>
 
 </template>
 
 <script>
-   import ChartSetUp from "../ChartSetUp";
-   import ElFaqSection from "../../views/compound-interest/ElFaqSection";
+    import ChartSetUp from "../ChartSetUp";
+    import ElFaqSection from "../../views/compound-interest/ElFaqSection";
 
     export default {
         name: 'CompoundCharts',
@@ -309,6 +305,7 @@
         font-size: 5rem;
         color: gray;
     }
+
     .high {
         font-weight: bolder;
         font-size: 1.5rem;
@@ -319,23 +316,32 @@
         background: #1C81A2;
         opacity: 0.8;
     }
+
     #deposits div.el-card__body {
         background: #23A1CD;
         opacity: 0.8;
     }
+
     #interest div.el-card__body {
         background: #68F1BB;
         opacity: 0.8;
     }
+
     #total div.el-card__body {
-           background: #4CBB9F;
+        background: #4CBB9F;
         opacity: 0.8;
     }
+
     .subtitle-style {
-        padding-bottom: 5px;
+        padding-bottom: 50px;
         color: gray;
     }
+
     .el-table__row {
+        text-align: center;
+    }
+
+    .cell {
         text-align: center;
     }
 

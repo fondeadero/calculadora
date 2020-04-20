@@ -1,29 +1,23 @@
 <template>
-  <el-container>
-    <el-main>
-      <el-header>
-        <el-nav-bar></el-nav-bar>
-      </el-header>
-      <el-container>
-        <el-main>
-          <router-view/>
-        </el-main>
-      </el-container>
-      <el-divider></el-divider>
-      <el-main-footer></el-main-footer>
-    </el-main>
-  </el-container>
+  <div>
+      <el-nav-bar></el-nav-bar>
+      <div  id="main">
+          <router-view></router-view>
+          <el-divider></el-divider>
+          <el-main-footer></el-main-footer>
+      </div>
+
+  </div>
 </template>
 
 <script>
-  import ElNavBar from "./views/layouts/ElNavBar";
   import ElMainFooter from "./views/layouts/ElMainFooter";
+  import ElNavBar from "./views/layouts/ElNavBar"
 
   export default {
     components: {
-      ElNavBar,
-      ElMainFooter
-
+      ElMainFooter,
+      ElNavBar
     },
     data() {
       return {
@@ -37,7 +31,15 @@
   }
 </script>
 <style>
-  @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css";
+  @import "~bulma/css/bulma.css";
+  #main {
+      padding: 80px;
+  }
+  @media(max-width: 1220px) {
+      #main {
+          padding: 0;
+      }
+  }
 </style>
 
 

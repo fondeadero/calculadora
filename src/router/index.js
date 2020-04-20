@@ -8,13 +8,13 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/home',
-    name: 'Home',
+    name: 'home',
     meta: {title: 'Inicio - Omar Educación Financiera'},
     beforeEnter() {location.href = 'https://omareducacionfinanciera.com/blog'}
   },
   {
     path: '/',
-    name: 'VueChartJS',
+    name: 'compoundInterest',
     component: CompoundInterestForm,
     meta: {title: 'Interés Compuesto - Omar Educación Financiera'}
   }

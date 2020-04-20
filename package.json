@@ -3,7 +3,7 @@
   "author": {
     "email": "delarocha.alberto01@gmail.com",
     "name": "Alberto de la Rocha",
-    "homepage":"https://www.linkedin.com/in/delarocha01/"
+    "homepage": "https://www.linkedin.com/in/delarocha01/"
   },
   "description": "App to calculate compound interest",
   "homepage": "https://omareducacionfinanciera.com/",
@@ -19,6 +19,7 @@
     "url": "https://github.com/dlr-delarocha/compound-interest"
   },
   "dependencies": {
+    "bulma": "^0.4.4",
     "core-js": "^3.6.4",
     "element-ui": "^2.13.0",
     "vue": "^2.6.11",
@@ -36,7 +37,8 @@
     "@vue/cli-service": "~4.2.0",
     "babel-eslint": "^10.0.3",
     "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.1.2"
+    "eslint-plugin-vue": "^6.1.2",
+    "node-sass": "^4.13.1"
   },
   "eslintConfig": {
     "root": true,
