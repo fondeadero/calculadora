@@ -33,7 +33,7 @@
                     let newValue = parseFloat(modifiedValue.replace(/[^\d.]/g, ""))
                     // Ensure that it is not NaN
                     if (isNaN(newValue)) {
-                        newValue = 0
+                        newValue = ''
                     }
                     // Note: we cannot set this.value as it is a "prop". It needs to be passed to parent component
                     // $emit the event so that parent component gets it
