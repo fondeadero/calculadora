@@ -1,5 +1,5 @@
 {
-  "name": "compount-interest",
+  "name": "compound-interest",
   "author": {
     "email": "delarocha.alberto01@gmail.com",
     "name": "Alberto de la Rocha",
@@ -7,7 +7,7 @@
   },
   "description": "App to calculate compound interest",
   "homepage": "https://omareducacionfinanciera.com/",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

@@ -177,13 +177,8 @@
                         },
                         {
                             label: 'Interés acumulado',
-                            backgroundColor: '#68F1BB',
-                            data: handleData['interests']
-                        },
-                        {
-                            label: 'Total',
                             backgroundColor: '#4CBB9F',
-                            data: handleData['total']
+                            data: handleData['interests']
                         }
                     ]
                 }
