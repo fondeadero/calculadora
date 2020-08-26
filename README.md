@@ -1,6 +1,6 @@
 # Compound-interest
 
-![Compound Interest](https://github.com/dlr-delarocha/compound-interest/blob/master/public/calculadora.png)
+![Compound Interest](https://github.com/dlr-delarocha/compound-interest/blob/master/public/dashboard.png)
 
 ## Project setup
 ```
