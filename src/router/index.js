@@ -1,22 +1,30 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import CompoundInterestForm from "../views/compound-interest/CompoundInterestForm";
 // import Home from "../views/Home";
 
 Vue.use(VueRouter)
 
+const author = "Omar Educación Financiera"
+
 const routes = [
+  { path: '/', redirect: '/interes-compuesto' },
   {
     path: '/home',
     name: 'home',
-    meta: {title: 'Inicio - Omar Educación Financiera'},
+    meta: {title: 'Inicio -' + author},
     beforeEnter() {location.href = 'https://omareducacionfinanciera.com/blog'}
   },
   {
-    path: '/',
-    name: 'compoundInterest',
-    component: CompoundInterestForm,
-    meta: {title: 'Interés Compuesto - Omar Educación Financiera'}
+    path: '/interes-compuesto',
+    name: 'CompoundInterest',
+    meta: {title: 'Interés Compuesto -' + author},
+    component: ()  => import('../views/compound-interest/Index')
+  },
+  {
+    path: '/amortizacion-para-credito',
+    name: 'CreditAmortization',
+    meta: {title: 'Amortización para crédito -' + author},
+    component: ()  => import('../views/credit-amortization/Index')
   }
 
 ]
