@@ -1,7 +1,7 @@
 <template>
   <section style="margin-top: 10px;">
     <el-row id="input-container">
-      <el-col :md="12" :xl="4" style="padding-right: 25px;">
+      <el-col :md="8" :xl="4" style="padding-right: 25px;">
         <el-col class="">
           <div class="sub-title subtitle-style">
             Depósito inicial
@@ -83,7 +83,7 @@
         </el-col>
       </el-col>
       <!--graph-->
-      <el-col :md="12" :xl="20">
+      <el-col :md="16" :xl="20">
         <compound-interest :inputs="inputs"></compound-interest>
       </el-col>
     </el-row>

@@ -1,0 +1,37 @@
+.el-card div.el-card__header > div > span {
+    padding-bottom: 2rem;
+    color: gray;
+}
+
+.card-blue-one div.el-card__body {
+    background: #23A1CD;
+    opacity: 0.8;
+}
+
+.card-blue-two div.el-card__body {
+    background: #1C81A2;
+    opacity: 0.8;
+}
+
+.card-green-one div.el-card__body {
+    background: #68F1BB;
+    opacity: 0.8;
+}
+
+.card-green-two div.el-card__body {
+    background: #4CBB9F;
+    opacity: 0.8;
+}
+
+.el-card div.el-card__body {
+    opacity: 0.8;
+}
+
+/*tables*/
+.el-table__row {
+    text-align: center;
+}
+
+.cell {
+    text-align: center;
+}

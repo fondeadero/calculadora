@@ -5,6 +5,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'element-ui/lib/theme-chalk/display.css';
 import 'bulma/css/bulma.css'
+import './assets/css/main.css';
 
 import App from './App.vue'
 

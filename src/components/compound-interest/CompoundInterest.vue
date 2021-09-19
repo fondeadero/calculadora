@@ -3,7 +3,7 @@
     <el-main>
       <el-row>
         <el-col>
-          <div class="subtitle-style">
+          <div class="subtitle-style result-card">
             <h3>
               Calculadora de interés compuesto
               <el-tooltip placement="top-start" effect="dark">
@@ -23,20 +23,20 @@
       <el-divider></el-divider>
 
       <el-row :gutter="12">
-        <div class="subtitle-style">
+        <div class="subtitle-style result-card">
           <h3>Resultados</h3>
         </div>
         <el-col :span="6" :xs="24" style="text-align: center; margin-bottom: 10px;">
-          <el-result-card id="principal" title="Depósito inicial" icon-shape="el-icon-wallet" :value="currentStrategy.principal"></el-result-card>
+          <el-result-card class="card-blue-one" title="Depósito inicial" icon-shape="el-icon-wallet" :value="currentStrategy.principal"></el-result-card>
         </el-col>
         <el-col :span="6" :xs="24" style="text-align: center; margin-bottom: 10px;">
-          <el-result-card id="deposits"  title="Depósitos adicionales acumulados" icon-shape="el-icon-coin" :value="currentStrategy.deposits"></el-result-card>
+          <el-result-card class="card-blue-two"  title="Depósitos adicionales acumulados" icon-shape="el-icon-coin" :value="currentStrategy.deposits"></el-result-card>
         </el-col>
         <el-col :span="6" :xs="24" style="text-align: center; margin-bottom: 10px;">
-          <el-result-card id="interest" title="Interés acumulado" icon-shape="el-icon-data-line" :value="currentStrategy.interests"></el-result-card>
+          <el-result-card class="card-green-one" title="Interés acumulado" icon-shape="el-icon-data-line" :value="currentStrategy.interests"></el-result-card>
         </el-col>
         <el-col :span="6" :xs="24" style="text-align: center; margin-bottom: 10px;">
-          <el-result-card id="total" title="Total" icon-shape="el-icon-money" :value="currentStrategy.total"></el-result-card>
+          <el-result-card class="card-green-two" title="Total" icon-shape="el-icon-money" :value="currentStrategy.total"></el-result-card>
         </el-col>
       </el-row>
 
@@ -44,7 +44,7 @@
 
       <el-row style="padding-bottom: 0; margin-bottom: 0">
         <el-col>
-          <div class="subtitle-style">
+          <div class="subtitle-style result-card">
             <h3>Resultados por año</h3>
           </div>
           <el-table style="padding: 15px;" :data="tableMetrics" height="40rem" v-loading="loading">
@@ -62,6 +62,7 @@
       <el-row>
         <el-faq-section></el-faq-section>
       </el-row>
+
     </el-main>
   </el-container>
 </template>
@@ -252,38 +253,3 @@ export default {
   }
 }
 </script>
-<style>
-#principal div.el-card__body {
-  background: #1C81A2;
-  opacity: 0.8;
-}
-
-#deposits div.el-card__body {
-  background: #23A1CD;
-  opacity: 0.8;
-}
-
-#interest div.el-card__body {
-  background: #68F1BB;
-  opacity: 0.8;
-}
-
-#total div.el-card__body {
-  background: #4CBB9F;
-  opacity: 0.8;
-}
-
-.subtitle-style {
-  padding-bottom: 50px;
-  color: gray;
-}
-
-.el-table__row {
-  text-align: center;
-}
-
-.cell {
-  text-align: center;
-}
-
-</style>

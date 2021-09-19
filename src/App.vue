@@ -27,7 +27,15 @@ export default {
       activeIndex2: '1'
     };
   },
-  methods: {}
+  methods: {},
+  watch: {
+    $route: {
+      immediate: true,
+      handler(to) {
+        document.title = to.meta.title || 'Omar Educación Financiera!';
+      }
+    },
+  }
 }
 </script>
 <style>
