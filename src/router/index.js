@@ -7,7 +7,6 @@ Vue.use(VueRouter)
 const author = "Omar Educación Financiera"
 
 const routes = [
-  { path: '/', redirect: '/interes-compuesto' },
   {
     path: '/home',
     name: 'home',
@@ -15,21 +14,15 @@ const routes = [
     beforeEnter() {location.href = 'https://omareducacionfinanciera.com/blog'}
   },
   {
-    path: '/interes-compuesto',
+    path: '/',
     name: 'CompoundInterest',
-    meta: {title: 'Interés Compuesto -' + author},
+    meta: {title: 'Interés Compuesto -' + author,  'page': 'Calculadora de interés compuesto'},
     component: ()  => import('../views/compound-interest/Index')
-  },
-  {
-    path: '/amortizacion-para-credito',
-    name: 'CreditAmortization',
-    meta: {title: 'Amortización para crédito -' + author},
-    component: ()  => import('../views/credit-amortization/Index')
   }
-
 ]
 
 const router = new VueRouter({
+  mode: 'history',
   routes
 })
 
